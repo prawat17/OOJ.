@@ -1,0 +1,11 @@
+class TypeCasting{
+  public static void main(String[] args) {
+        int intValue = 100;
+        float floatValue = intValue;
+        System.out.println("Type Casting of integer value: " + intValue + " as float is " + floatValue);
+
+        float anotherFloatValue = 9.78f;
+        int anotherIntValue = (int) anotherFloatValue;
+        System.out.println("Automatic Casting of float value: " + anotherFloatValue + " as int is " + anotherIntValue);
+    }
+}
