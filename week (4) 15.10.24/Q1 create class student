@@ -91,7 +91,7 @@ class Student {
     private float calculateCGPA() {
         float sgpa1 = calculateSGPA(semester1Marks);
         float sgpa2 = calculateSGPA(semester2Marks);
-        return (sgpa1 + sgpa2) / 2; // Average of SGPA for simplicity
+        return (sgpa1 + sgpa2) / 2;
     }
 
     public static void main(String[] args) {
