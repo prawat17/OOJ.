@@ -1,0 +1,118 @@
+import java.util.*;
+
+class Customer {
+    private String name;
+    private double balance;
+
+    public Customer(String name) {
+        this.name = name;
+        this.balance = 0.0;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposited: " + amount);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Invalid withdrawal amount.");
+        }
+    }
+}
+
+class BankingSystem {
+    private Map<Integer, Customer> customers;
+
+    public BankingSystem() {
+        customers = new HashMap<>();
+        initializeCustomers();
+    }
+
+    private void initializeCustomers() {
+        for (int i = 1; i <= 15; i++) {
+            customers.put(i, new Customer("Customer " + i));
+        }
+    }
+
+    public void displayMenu() {
+        System.out.println("Banking System Menu:");
+        System.out.println("1. Deposit");
+        System.out.println("2. Withdraw");
+        System.out.println("3. Check Balance");
+        System.out.println("4. Exit");
+    }
+
+    public void performAction(int customerId, int action, double amount) {
+        Customer customer = customers.get(customerId);
+        if (customer == null) {
+            System.out.println("Invalid Customer ID.");
+            return;
+        }
+
+        switch (action) {
+            case 1:
+                customer.deposit(amount);
+                break;
+            case 2:
+                customer.withdraw(amount);
+                break;
+            case 3:
+                System.out.println("Balance of " + customer.getName() + ": " + customer.getBalance());
+                break;
+            default:
+                System.out.println("Invalid action.");
+        }
+    }
+
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            displayMenu();
+            System.out.print("Select a customer (1-15): ");
+            int customerId = scanner.nextInt();
+            if (customerId < 1 || customerId > 15) {
+                System.out.println("Exiting the system.");
+                break;
+            }
+
+            System.out.print("Select action (1-Deposit, 2-Withdraw, 3-Check Balance, 4-Exit): ");
+            int action = scanner.nextInt();
+            if (action == 4) {
+                System.out.println("Exiting the system.");
+                break;
+            }
+
+            double amount = 0;
+            if (action == 1 || action == 2) {
+                System.out.print("Enter amount: ");
+                amount = scanner.nextDouble();
+            }
+
+            performAction(customerId, action, amount);
+        }
+        scanner.close();
+    }
+}
+
+public class BankingApp {
+    public static void main(String[] args) {
+        BankingSystem bankingSystem = new BankingSystem();
+        bankingSystem.start();
+    }
+}
