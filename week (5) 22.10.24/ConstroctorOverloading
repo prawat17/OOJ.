@@ -1,0 +1,42 @@
+class Calculator {
+    
+    Calculator() {
+        System.out.println("Default constructor called");
+    }
+
+    Calculator(int a, int b) {
+        System.out.println("Parameterized constructor called: Sum = " + (a + b));
+    }
+
+    Calculator(double a, double b) {
+        System.out.println("Parameterized constructor called: Product = " + (a * b));
+    }
+
+
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int add(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    
+    public double add(double a, double b) {
+        return a + b;
+    }
+}
+
+ class Main {
+    public static void main(String[] args) {
+       
+        Calculator calc1 = new Calculator();
+        Calculator calc2 = new Calculator(5, 10);
+        Calculator calc3 = new Calculator(2.5, 4.5); 
+
+        
+        System.out.println("Sum of two integers: " + calc1.add(10, 20));
+        System.out.println("Sum of three integers: " + calc1.add(10, 20, 30));
+        System.out.println("Sum of two doubles: " + calc1.add(5.5, 3.2));
+    }
+}
